@@ -41,7 +41,7 @@ def main(args):
 	"""
 
 	ny = B.shape[0]
-        nx = B.shape[1]
+	nx = B.shape[1]
 	dc = pi/180.*24800. # distance conversion (degr to kpc)
 	zaxis = arange(0.,11.1,1.)/dc
 	Rzgrid = zeros((1,len(zaxis)))
@@ -56,8 +56,8 @@ def main(args):
                 	#if R[y,x]>0./3600. or z[y,x]<0./dc: continue
                 	if isnan(B[y,x]): continue
                 	ri = 0#where(abs(Raxis)-abs(R[y,x])==min(abs(Raxis)-abs(R[y,x])))
-                	#zi = where(abs(zaxis-abs(z[y,x]))==min(abs(zaxis-abs(z[y,x]))))
-                	zi = where(abs(zaxis-z[y,x])==min(abs(zaxis-z[y,x])))
+                	zi = where(abs(zaxis-abs(z[y,x]))==min(abs(zaxis-abs(z[y,x]))))
+                	#zi = where(abs(zaxis-z[y,x])==min(abs(zaxis-z[y,x])))
                 	Rzgrid[ri,zi] += B[y,x]
                 	ccgrid[ri,zi] += 1
 	Rzgrid[ccgrid!=0] /= ccgrid[ccgrid!=0]
@@ -70,8 +70,8 @@ def main(args):
                 	#if R[y,x]>0./3600. or z[y,x]<0./dc: continue
                 	if isnan(B[y,x]): continue
                 	ri = 0#where(abs(Raxis)-abs(R[y,x])==min(abs(Raxis)-abs(R[y,x])))
-                	#zi = where(abs(zaxis-abs(z[y,x]))==min(abs(zaxis-abs(z[y,x]))))
-                	zi = where(abs(zaxis-z[y,x])==min(abs(zaxis-z[y,x])))
+                	zi = where(abs(zaxis-abs(z[y,x]))==min(abs(zaxis-abs(z[y,x]))))
+                	#zi = where(abs(zaxis-z[y,x])==min(abs(zaxis-z[y,x])))
                 	ergrid[ri,zi] += (B[y,x]-Rzgrid[ri,zi])**2
 	ergrid[ccgrid!=0] /= ccgrid[ccgrid!=0]
 	ergrid = sqrt(ergrid)
