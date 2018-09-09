@@ -40,6 +40,8 @@ def main(args):
 
 	"""
 
+	ny = B.shape[0]
+        nx = B.shape[1]
 	dc = pi/180.*24800. # distance conversion (degr to kpc)
 	zaxis = arange(0.,11.1,1.)/dc
 	Rzgrid = zeros((1,len(zaxis)))
