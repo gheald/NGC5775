@@ -52,11 +52,11 @@ def main(args):
 			# reject pixels outside of region
                 	if abs(R[y,x])>90./3600. or abs(z[y,x])>11./dc: continue
                 	#if R[y,x]>0./3600. or z[y,x]<0./dc: continue
-                	if isnan(data[y,x]): continue
+                	if isnan(B[y,x]): continue
                 	ri = 0#where(abs(Raxis)-abs(R[y,x])==min(abs(Raxis)-abs(R[y,x])))
                 	#zi = where(abs(zaxis-abs(z[y,x]))==min(abs(zaxis-abs(z[y,x]))))
                 	zi = where(abs(zaxis-z[y,x])==min(abs(zaxis-z[y,x])))
-                	Rzgrid[ri,zi] += data[y,x]
+                	Rzgrid[ri,zi] += B[y,x]
                 	ccgrid[ri,zi] += 1
 	Rzgrid[ccgrid!=0] /= ccgrid[ccgrid!=0]
 	for x in range(nx):
@@ -66,11 +66,11 @@ def main(args):
 			# reject pixels outside of region
                 	if abs(R[y,x])>90./3600. or abs(z[y,x])>11./dc: continue
                 	#if R[y,x]>0./3600. or z[y,x]<0./dc: continue
-                	if isnan(data[y,x]): continue
+                	if isnan(B[y,x]): continue
                 	ri = 0#where(abs(Raxis)-abs(R[y,x])==min(abs(Raxis)-abs(R[y,x])))
                 	#zi = where(abs(zaxis-abs(z[y,x]))==min(abs(zaxis-abs(z[y,x]))))
                 	zi = where(abs(zaxis-z[y,x])==min(abs(zaxis-z[y,x])))
-                	ergrid[ri,zi] += (data[y,x]-Rzgrid[ri,zi])**2
+                	ergrid[ri,zi] += (B[y,x]-Rzgrid[ri,zi])**2
 	ergrid[ccgrid!=0] /= ccgrid[ccgrid!=0]
 	ergrid = sqrt(ergrid)
 	outputfile = open(args.outfile,'w')
